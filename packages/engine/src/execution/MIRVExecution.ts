@@ -142,13 +142,15 @@ export class MirvExecution implements Execution {
         );
       }
 
-      this.mg.displayIncomingUnit(
-        this.nuke.id(),
-        // TODO TranslateText
-        `⚠️⚠️⚠️ ${this.player.displayName()} - MIRV INBOUND ⚠️⚠️⚠️`,
-        MessageType.MIRV_INBOUND,
-        this.targetPlayer.id(),
-      );
+      if (this.targetPlayer.isPlayer()) {
+        this.mg.displayIncomingUnit(
+          this.nuke.id(),
+          // TODO TranslateText
+          `⚠️⚠️⚠️ ${this.player.displayName()} - MIRV INBOUND ⚠️⚠️⚠️`,
+          MessageType.MIRV_INBOUND,
+          this.targetPlayer.id(),
+        );
+      }
 
       // after sending a nuke set the missilesilo on cooldown
       const silo = this.player
